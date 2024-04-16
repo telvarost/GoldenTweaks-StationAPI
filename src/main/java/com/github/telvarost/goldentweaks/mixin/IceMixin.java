@@ -28,7 +28,6 @@ public class IceMixin extends TranslucentBlock {
 
     @Inject(at = @At("HEAD"), method = "afterBreak", cancellable = true)
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l, CallbackInfo ci) {
-
         if (Config.config.enableGoldPickaxeSilkTouch) {
             brokenByGoldTool = false;
 
@@ -38,23 +37,22 @@ public class IceMixin extends TranslucentBlock {
                && (ItemBase.goldPickaxe.id == player.inventory.getHeldItem().itemId)
             ) {
                 brokenByGoldTool = true;
+                player.increaseStat(Stats.mineBlock[this.id], 1);
+                this.drop(arg, i, j, k, l);
+                ci.cancel();
             }
         }
-
-        player.increaseStat(Stats.mineBlock[this.id], 1);
-        this.drop(arg, i, j, k, l);
-        ci.cancel();
     }
 
-//    @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
-//    public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
-//        if (!Config.config.enableGoldAxeSilkTouch) {
-//            return;
-//        }
-//
-//        if (brokenByGoldTool) {
-//            cir.setReturnValue(id);
-//            brokenByGoldTool = false;
-//        }
-//    }
+    @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
+    public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
+        if (!Config.config.enableGoldAxeSilkTouch) {
+            return;
+        }
+
+        if (brokenByGoldTool) {
+            cir.setReturnValue(1);
+            brokenByGoldTool = false;
+        }
+    }
 }
