@@ -35,7 +35,7 @@ public class BookshelfMixin extends BlockBase {
             if (  (null != player)
                     && (null != player.inventory)
                     && (null != player.inventory.getHeldItem())
-                    && (ItemBase.goldPickaxe.id == player.inventory.getHeldItem().itemId)
+                    && (ItemBase.goldAxe.id == player.inventory.getHeldItem().itemId)
             ) {
                 brokenByGoldTool = true;
             }
