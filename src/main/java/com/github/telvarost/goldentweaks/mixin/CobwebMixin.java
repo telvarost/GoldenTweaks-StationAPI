@@ -35,8 +35,7 @@ class CobwebMixin extends BlockBase {
                && (null != player.inventory)
                && (null != player.inventory.getHeldItem())
                && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
-               )
-            {
+            ) {
                 brokenByGoldTool = true;
             }
         }

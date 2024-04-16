@@ -32,11 +32,10 @@ public class FarmlandMixin extends BlockBase {
             brokenByGoldTool = false;
 
             if (  (null != player)
-                    && (null != player.inventory)
-                    && (null != player.inventory.getHeldItem())
-                    && (ItemBase.goldShovel.id == player.inventory.getHeldItem().itemId)
-            )
-            {
+                && (null != player.inventory)
+                && (null != player.inventory.getHeldItem())
+                && (ItemBase.goldShovel.id == player.inventory.getHeldItem().itemId)
+            ) {
                 brokenByGoldTool = true;
             }
         }

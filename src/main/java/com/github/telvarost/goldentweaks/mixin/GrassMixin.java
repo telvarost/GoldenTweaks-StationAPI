@@ -35,8 +35,7 @@ public class GrassMixin extends BlockBase {
                     && (null != player.inventory)
                     && (null != player.inventory.getHeldItem())
                     && (ItemBase.goldShovel.id == player.inventory.getHeldItem().itemId)
-            )
-            {
+            ) {
                 brokenByGoldTool = true;
             }
         }
