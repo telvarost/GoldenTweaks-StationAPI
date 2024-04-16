@@ -9,7 +9,9 @@
     "FarmlandMixin",
     "GlassMixin",
     "GrassMixin",
-    "IceMixin"
+    "IceMixin",
+    "RedstoneOreMixin",
+    "ToolMaterialMixin"
   ],
   "server": [
   ],
