@@ -2,7 +2,7 @@ package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
 import net.minecraft.block.BlockBase;
-import net.minecraft.block.Cobweb;
+import net.minecraft.block.Grass;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
@@ -16,10 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Cobweb.class)
-class CobwebMixin extends BlockBase {
-    public CobwebMixin(int i, Material arg) {
-        super(i, arg);
+@Mixin(Grass.class)
+public class GrassMixin extends BlockBase {
+    public GrassMixin(int i) {
+        super(i, Material.ORGANIC);
     }
 
     @Unique
@@ -28,14 +28,14 @@ class CobwebMixin extends BlockBase {
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
 
-        if (Config.config.enableGoldSwordFireAspect) {
+        if (Config.config.enableGoldShovelSilkTouch) {
             brokenByGoldTool = false;
 
             if (  (null != player)
-               && (null != player.inventory)
-               && (null != player.inventory.getHeldItem())
-               && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
-               )
+                    && (null != player.inventory)
+                    && (null != player.inventory.getHeldItem())
+                    && (ItemBase.goldShovel.id == player.inventory.getHeldItem().itemId)
+            )
             {
                 brokenByGoldTool = true;
             }
@@ -47,7 +47,7 @@ class CobwebMixin extends BlockBase {
 
     @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
     public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.config.enableGoldSwordFireAspect) {
+        if (!Config.config.enableGoldShovelSilkTouch) {
             return;
         }
 
@@ -57,4 +57,3 @@ class CobwebMixin extends BlockBase {
         }
     }
 }
-

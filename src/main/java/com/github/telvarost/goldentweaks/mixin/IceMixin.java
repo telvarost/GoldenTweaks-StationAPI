@@ -28,6 +28,7 @@ public class IceMixin extends TranslucentBlock {
 
     @Inject(at = @At("HEAD"), method = "afterBreak", cancellable = true)
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l, CallbackInfo ci) {
+
         if (Config.config.enableGoldPickaxeSilkTouch) {
             brokenByGoldTool = false;
 
