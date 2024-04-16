@@ -20,7 +20,7 @@ import java.util.Random;
 class CobwebMixin extends BlockBase {
 
     @Unique
-    private boolean brokenByShears = false;
+    private boolean brokenByGoldTool = false;
 
     public CobwebMixin(int i, Material arg) {
         super(i, arg);
@@ -29,16 +29,16 @@ class CobwebMixin extends BlockBase {
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
 
-        if (Config.config.enableGoldAxeSilkTouch) {
-            brokenByShears = false;
+        if (Config.config.enableGoldSwordFireAspect) {
+            brokenByGoldTool = false;
 
             if (  (null != player)
                && (null != player.inventory)
                && (null != player.inventory.getHeldItem())
-               && (ItemBase.shears.id == player.inventory.getHeldItem().itemId)
+               && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
                )
             {
-                brokenByShears = true;
+                brokenByGoldTool = true;
             }
         }
 
@@ -48,13 +48,13 @@ class CobwebMixin extends BlockBase {
 
     @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
     public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.config.enableGoldAxeSilkTouch) {
+        if (!Config.config.enableGoldSwordFireAspect) {
             return;
         }
 
-        if (brokenByShears) {
+        if (brokenByGoldTool) {
             cir.setReturnValue(id);
-            brokenByShears = false;
+            brokenByGoldTool = false;
         }
     }
 }
