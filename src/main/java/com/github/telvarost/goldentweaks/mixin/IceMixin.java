@@ -47,7 +47,7 @@ public class IceMixin extends TranslucentBlock {
 
     @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
     public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.config.enableGoldAxeSilkTouch) {
+        if (!Config.config.enableGoldPickaxeSilkTouch) {
             return;
         }
 
