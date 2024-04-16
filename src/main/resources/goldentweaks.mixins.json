@@ -1,0 +1,35 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.telvarost.goldentweaks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BoatMixin",
+    "BookshelfMixin",
+    "ChickenMixin",
+    "CobwebMixin",
+    "FenceMixin",
+    "FlintAndSteelMixin",
+    "FlowingFluidMixin",
+    "HatchetMixin",
+    "ItemBaseMixin",
+    "LevelMixin",
+    "MinecraftMixin",
+    "PickaxeMixin",
+    "PigMixin",
+    "PlayerBaseMixin",
+    "StairsMixin",
+    "ToolBaseMixin"
+  ],
+  "server": [
+    "ServerPacketHandlerMixin",
+    "ServerPlayerConnectionManagerMixin"
+  ],
+  "client": [
+    "PlayerInventoryMixin",
+    "SinglePlayerClientInteractionManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "goldentweaks",
+  "version": "${version}",
+
+  "name": "GoldenTweaks",
+  "description": "Gives gold tools special properties such as silk touch or looting.",
+  "authors": [
+    "Telvarost"
+  ],
+  "contact": {
+    "issues": "https://github.com/telvarost/GoldenTweaks-StationAPI/issues",
+    "homepage": "https://github.com/telvarost/GoldenTweaks-StationAPI/",
+    "sources": "https://github.com/telvarost/GoldenTweaks-StationAPI/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/goldentweaks/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ],
+    "gcapi": [
+      "com.github.telvarost.goldentweaks.Config"
+    ]
+  },
+  "mixins": [
+    "goldentweaks.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  },
+
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_54": [
+        "com/github/telvarost/goldentweaks/interfaces/VehicleInterface"
+      ]
+    }
+  }
+}
