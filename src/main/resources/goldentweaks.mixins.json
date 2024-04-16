@@ -4,8 +4,10 @@
   "package": "com.github.telvarost.goldentweaks.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "GrassMixin",
+    "BookshelfMixin",
     "CobwebMixin",
+    "FarmlandMixin",
+    "GrassMixin",
     "IceMixin"
   ],
   "server": [
