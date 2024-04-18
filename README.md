@@ -33,7 +33,7 @@ Gives gold tools special properties such as silk touch, fortune, or looting.
     * x2 flint
 * Gold Sword Looting For:
   * All mobs
-    * +1 to each item type that they drop
+    * +1 drop for each item type the mob drops
 * Gold Sword Silk Touch For:
   * Cake when cake is full/uneaten
 
