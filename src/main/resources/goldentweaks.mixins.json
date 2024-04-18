@@ -16,6 +16,8 @@
     "LivingMixin",
     "OreMixin",
     "RedstoneOreMixin",
+    "SheepMixin",
+    "SkeletonMixin",
     "SnowBlockMixin",
     "SnowMixin",
     "StairsMixin",
