@@ -1,5 +1,6 @@
 package com.github.telvarost.goldentweaks.mixin;
 
+import com.github.telvarost.goldentweaks.Config;
 import com.github.telvarost.goldentweaks.ModHelper;
 import net.minecraft.block.BlockBase;
 import net.minecraft.entity.animal.AnimalBase;
@@ -24,7 +25,8 @@ public abstract class SheepMixin extends AnimalBase {
 
     @Inject(at = @At("HEAD"), method = "getDrops", cancellable = true)
     protected void getDrops(CallbackInfo ci) {
-        if (  (!this.isSheared())
+        if (  (Config.config.enableGoldSwordLooting)
+           && (!this.isSheared())
            && (0 < ModHelper.ModHelperFields.UsingGoldSword)
         ) {
             ModHelper.ModHelperFields.UsingGoldSword--;
