@@ -4,6 +4,7 @@ import com.github.telvarost.goldentweaks.Config;
 import com.github.telvarost.goldentweaks.ModHelper;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
+import net.minecraft.entity.monster.Skeleton;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
 import org.checkerframework.common.aliasing.qual.Unique;
@@ -30,6 +31,11 @@ public class LivingMixin {
                    && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
                 ) {
                     ModHelper.ModHelperFields.UsingGoldSword++;
+
+                    /** - The skeleton drops two items so needs two increments of using gold sword */
+                    if ((Object)this instanceof Skeleton) {
+                        ModHelper.ModHelperFields.UsingGoldSword++;
+                    }
 
                     /** - Applying an extra damage point because of the bow glitch
                      *    When killing with an arrow it is possible to get looting effect by swapping to gold sword
