@@ -17,13 +17,13 @@ Gives gold tools special properties such as silk touch, fortune, or looting.
   * Snow Blocks
   * Snow Layers
 * Gold Pickaxe Silk Touch For:
+  * Cobblestone Stairs
   * Glass Blocks
   * Glowstone Blocks
   * Ice Blocks
   * Ore Blocks
     * Coal, Redstone, Lapis, and Diamond
-      * To be able to mine some of these ores the mining level of the gold pickaxe was raised from 0 to 2
-  * Cobblestone Stairs
+    * To be able to mine some of these ores the mining level of the gold pickaxe was raised from 0 to 2
   * Stone Blocks
 * Gold Hoe Fortune For:
   * Wheat Crops
