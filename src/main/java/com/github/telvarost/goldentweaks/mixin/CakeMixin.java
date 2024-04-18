@@ -57,7 +57,7 @@ public class CakeMixin extends BlockBase {
         }
 
         if (brokenByGoldToolId) {
-            cir.setReturnValue(id);
+            cir.setReturnValue(ItemBase.cake.id);
             brokenByGoldToolId = false;
         }
     }

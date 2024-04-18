@@ -17,6 +17,7 @@
     "RedstoneOreMixin",
     "SnowBlockMixin",
     "SnowMixin",
+    "StairsMixin",
     "StoneMixin",
     "ToolMaterialMixin"
   ],
