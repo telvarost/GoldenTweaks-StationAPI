@@ -12,6 +12,7 @@
     "GlassMixin",
     "GlowstoneMixin",
     "GrassMixin",
+    "GravelMixin",
     "IceMixin",
     "LivingMixin",
     "OreMixin",
