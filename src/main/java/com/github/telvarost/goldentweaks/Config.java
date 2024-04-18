@@ -17,7 +17,7 @@ public class Config {
         public Boolean enableGoldAxeSilkTouch = true;
 
         @ConfigName("Enable Gold Hoe Fortune")
-        @Comment("Fortune is just x2 or 1/8 duplication chance")
+        @Comment("Fortune is just x2 on crops and flint")
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldHoeFortune = true;
