@@ -1,11 +1,41 @@
 # GoldenTweaks StationAPI Edition for Minecraft Beta 1.7.3
 
+Gives gold tools special properties such as silk touch, fortune, or looting.
+
 **This version of the mod now supports multiplayer!**
 - Use GlassConfigAPI version 2.0+ to set up the config.
 
-## Changes (In Progress)
+## List of changes
 
-* Gives gold tools special properties such as silk touch or looting.
+* Gold Axe Silk Touch For:
+  * Bookshelves
+  * Wood Stairs
+* Gold Shovel Silk Touch For:
+  * Clay Blocks
+  * Farmland Blocks
+  * Grass Blocks
+  * Snow Blocks
+  * Snow Layers
+* Gold Pickaxe Silk Touch For:
+  * Glass Blocks
+  * Glowstone Blocks
+  * Ice Blocks
+  * Ore Blocks
+    * Coal, Redstone, Lapis, and Diamond
+      * To be able to mine some of these ores the mining level of the gold pickaxe was raised from 0 to 2
+  * Cobblestone Stairs
+  * Stone Blocks
+* Gold Hoe Fortune For:
+  * Wheat Crops
+    * x2 wheat when full-grown
+    * +1 seeds drop
+  * Gravel Blocks
+    * x2 flint
+* Gold Sword Looting For:
+  * All mobs
+    * +1 to each item type that they drop
+* Gold Sword Silk Touch For:
+  * Cake when cake is full/uneaten
 
 ## Installation using Prism Launcher
 
