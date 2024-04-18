@@ -10,6 +10,7 @@
     "GlassMixin",
     "GrassMixin",
     "IceMixin",
+    "OreMixin",
     "RedstoneOreMixin",
     "ToolMaterialMixin"
   ],
