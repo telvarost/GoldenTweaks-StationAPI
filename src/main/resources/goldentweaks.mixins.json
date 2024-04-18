@@ -5,10 +5,12 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BookshelfMixin",
+    "CakeMixin",
     "ClayMixin",
     "CobwebMixin",
     "FarmlandMixin",
     "GlassMixin",
+    "GlowstoneMixin",
     "GrassMixin",
     "IceMixin",
     "OreMixin",

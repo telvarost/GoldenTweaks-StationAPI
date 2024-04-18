@@ -2,7 +2,7 @@ package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
 import net.minecraft.block.BlockBase;
-import net.minecraft.block.Cobweb;
+import net.minecraft.block.Cake;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
@@ -16,27 +16,33 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Cobweb.class)
-class CobwebMixin extends BlockBase {
-    public CobwebMixin(int i, Material arg) {
-        super(i, arg);
+@Mixin(Cake.class)
+public class CakeMixin extends BlockBase {
+    public CakeMixin(int i, int j) {
+        super(i, j, Material.CAKE);
     }
 
     @Unique
-    private boolean brokenByGoldTool = false;
+    private boolean brokenByGoldToolId = false;
+
+    @Unique
+    private boolean brokenByGoldToolCount = false;
 
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
 
         if (Config.config.enableGoldSwordLooting) {
-            brokenByGoldTool = false;
+            brokenByGoldToolId = false;
+            brokenByGoldToolCount = false;
 
             if (  (null != player)
-               && (null != player.inventory)
-               && (null != player.inventory.getHeldItem())
-               && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
+                && (null != player.inventory)
+                && (null != player.inventory.getHeldItem())
+                && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
+                && (0 == l)
             ) {
-                brokenByGoldTool = true;
+                brokenByGoldToolId = true;
+                brokenByGoldToolCount = true;
             }
         }
 
@@ -50,10 +56,21 @@ class CobwebMixin extends BlockBase {
             return;
         }
 
-        if (brokenByGoldTool) {
+        if (brokenByGoldToolId) {
             cir.setReturnValue(id);
-            brokenByGoldTool = false;
+            brokenByGoldToolId = false;
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
+    public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
+        if (!Config.config.enableGoldSwordLooting) {
+            return;
+        }
+
+        if (brokenByGoldToolCount) {
+            cir.setReturnValue(1);
+            brokenByGoldToolCount = false;
         }
     }
 }
-

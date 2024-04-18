@@ -15,10 +15,10 @@ public class Config {
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldAxeSilkTouch = true;
 
-        @ConfigName("Enable Gold Hoe Looting")
+        @ConfigName("Enable Gold Hoe Fortune")
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
-        public Boolean enableGoldHoeLooting = true;
+        public Boolean enableGoldHoeFortune = true;
 
         @ConfigName("Enable Gold Pickaxe Silk Touch")
         @MultiplayerSynced
@@ -30,9 +30,9 @@ public class Config {
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldShovelSilkTouch = true;
 
-        @ConfigName("Enable Gold Sword Fire Aspect")
+        @ConfigName("Enable Gold Sword Looting")
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
-        public Boolean enableGoldSwordFireAspect = true;
+        public Boolean enableGoldSwordLooting = true;
     }
 }
