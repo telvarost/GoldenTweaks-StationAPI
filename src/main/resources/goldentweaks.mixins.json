@@ -13,6 +13,7 @@
     "GlowstoneMixin",
     "GrassMixin",
     "IceMixin",
+    "LivingMixin",
     "OreMixin",
     "RedstoneOreMixin",
     "SnowBlockMixin",
