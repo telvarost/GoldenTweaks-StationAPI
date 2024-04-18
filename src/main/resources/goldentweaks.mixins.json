@@ -8,6 +8,7 @@
     "CakeMixin",
     "ClayMixin",
     "CropsMixin",
+    "FoodBaseMixin",
     "FarmlandMixin",
     "GlassMixin",
     "GlowstoneMixin",

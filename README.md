@@ -36,6 +36,10 @@ Gives gold tools special properties such as silk touch, fortune, or looting.
     * +1 drop for each item type the mob drops
 * Gold Sword Silk Touch For:
   * Cake when cake is full/uneaten
+* Gold Apple Cure Fire:
+  * Golden apples will now cure fire effect on player when eaten
+    * Note that this does nothing if in lava or very little if standing in flames
+    * It is simply to put out the fire when you have escaped it and water is not available
 
 ## Installation using Prism Launcher
 

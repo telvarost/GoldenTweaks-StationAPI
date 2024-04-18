@@ -10,6 +10,12 @@ public class Config {
 
     public static class ConfigFields {
 
+        @ConfigName("Enable Gold Apple Cure Fire")
+        @Comment("Cancels fire effect one time when eaten")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldAppleCureFire = true;
+
         @ConfigName("Enable Gold Axe Silk Touch")
         @Comment("Tool must be effective on block for effect")
         @MultiplayerSynced
