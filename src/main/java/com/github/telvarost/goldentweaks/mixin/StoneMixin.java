@@ -2,7 +2,7 @@ package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
 import net.minecraft.block.BlockBase;
-import net.minecraft.block.Ore;
+import net.minecraft.block.Stone;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
@@ -16,32 +16,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Ore.class)
-public class OreMixin extends BlockBase {
-    public OreMixin(int i, int j) {
+@Mixin(Stone.class)
+public class StoneMixin extends BlockBase {
+    public StoneMixin(int i, int j) {
         super(i, j, Material.STONE);
     }
 
     @Unique
-    private boolean brokenByGoldToolId = false;
-
-    @Unique
-    private boolean brokenByGoldToolCount = false;
+    private boolean brokenByGoldTool = false;
 
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
 
         if (Config.config.enableGoldPickaxeSilkTouch) {
-            brokenByGoldToolId = false;
-            brokenByGoldToolCount = false;
+            brokenByGoldTool = false;
 
             if (  (null != player)
                     && (null != player.inventory)
                     && (null != player.inventory.getHeldItem())
                     && (ItemBase.goldPickaxe.id == player.inventory.getHeldItem().itemId)
             ) {
-                brokenByGoldToolId = true;
-                brokenByGoldToolCount = true;
+                brokenByGoldTool = true;
             }
         }
 
@@ -55,21 +50,9 @@ public class OreMixin extends BlockBase {
             return;
         }
 
-        if (brokenByGoldToolId) {
+        if (brokenByGoldTool) {
             cir.setReturnValue(id);
-            brokenByGoldToolId = false;
-        }
-    }
-
-    @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
-    public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.config.enableGoldPickaxeSilkTouch) {
-            return;
-        }
-
-        if (brokenByGoldToolCount) {
-            cir.setReturnValue(1);
-            brokenByGoldToolCount = false;
+            brokenByGoldTool = false;
         }
     }
 }

@@ -30,7 +30,7 @@ public class RedstoneOreMixin extends BlockBase {
 
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
-        System.out.println("Hello I here");
+
         if (Config.config.enableGoldPickaxeSilkTouch) {
             brokenByGoldToolId = false;
             brokenByGoldToolCount = false;
@@ -56,7 +56,7 @@ public class RedstoneOreMixin extends BlockBase {
         }
 
         if (brokenByGoldToolId) {
-            cir.setReturnValue(id);
+            cir.setReturnValue(BlockBase.REDSTONE_ORE.id);
             brokenByGoldToolId = false;
         }
     }

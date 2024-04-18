@@ -2,7 +2,7 @@ package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
 import net.minecraft.block.BlockBase;
-import net.minecraft.block.Ore;
+import net.minecraft.block.Clay;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
@@ -16,10 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Ore.class)
-public class OreMixin extends BlockBase {
-    public OreMixin(int i, int j) {
-        super(i, j, Material.STONE);
+@Mixin(Clay.class)
+public class ClayMixin extends BlockBase {
+    public ClayMixin(int i, int j) {
+        super(i, j, Material.CLAY);
     }
 
     @Unique
@@ -31,14 +31,14 @@ public class OreMixin extends BlockBase {
     @Override
     public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
 
-        if (Config.config.enableGoldPickaxeSilkTouch) {
+        if (Config.config.enableGoldShovelSilkTouch) {
             brokenByGoldToolId = false;
             brokenByGoldToolCount = false;
 
             if (  (null != player)
                     && (null != player.inventory)
                     && (null != player.inventory.getHeldItem())
-                    && (ItemBase.goldPickaxe.id == player.inventory.getHeldItem().itemId)
+                    && (ItemBase.goldShovel.id == player.inventory.getHeldItem().itemId)
             ) {
                 brokenByGoldToolId = true;
                 brokenByGoldToolCount = true;
@@ -51,7 +51,7 @@ public class OreMixin extends BlockBase {
 
     @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
     public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.config.enableGoldPickaxeSilkTouch) {
+        if (!Config.config.enableGoldShovelSilkTouch) {
             return;
         }
 

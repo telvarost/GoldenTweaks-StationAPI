@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BookshelfMixin",
+    "ClayMixin",
     "CobwebMixin",
     "FarmlandMixin",
     "GlassMixin",
@@ -12,6 +13,9 @@
     "IceMixin",
     "OreMixin",
     "RedstoneOreMixin",
+    "SnowBlockMixin",
+    "SnowMixin",
+    "StoneMixin",
     "ToolMaterialMixin"
   ],
   "server": [
