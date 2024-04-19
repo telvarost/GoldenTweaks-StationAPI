@@ -17,11 +17,13 @@
     "IceMixin",
     "LivingMixin",
     "OreMixin",
+    "PlayerBaseMixin",
     "RedstoneOreMixin",
     "SheepMixin",
     "SkeletonMixin",
     "SnowBlockMixin",
     "SnowMixin",
+    "SoulSandMixin",
     "StairsMixin",
     "StoneMixin",
     "ToolMaterialMixin"

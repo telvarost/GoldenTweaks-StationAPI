@@ -22,11 +22,35 @@ public class Config {
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldAxeSilkTouch = true;
 
+        @ConfigName("Enable Gold Boots Soul Speed")
+        @Comment("Negates the slow-down effect of soul sand")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldBootsSoulSpeed = true;
+
+        @ConfigName("Enable Gold Chestplate Projectile Protection")
+        @Comment("Only reduces skeleton arrow damage")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldChestplateProjectileProtection = true;
+
+        @ConfigName("Enable Gold Helmet Blast Protection")
+        @Comment("Only reduces creeper explosion damage")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldHelmetBlastProtection = true;
+
         @ConfigName("Enable Gold Hoe Fortune")
         @Comment("Fortune is just x2 on crops and flint")
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldHoeFortune = true;
+
+        @ConfigName("Enable Gold Leggings Thorns")
+        @Comment("Only damages attacking spiders")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldLeggingsThorns = true;
 
         @ConfigName("Enable Gold Pickaxe Silk Touch")
         @Comment("Tool must be effective on block for effect")

@@ -7,6 +7,7 @@ Gives gold tools special properties such as silk touch, fortune, or looting.
 
 ## List of changes
 
+### Gold Tools
 * Gold Axe Silk Touch For:
   * Bookshelves
   * Wood Stairs
@@ -36,6 +37,19 @@ Gives gold tools special properties such as silk touch, fortune, or looting.
     * +1 drop for each item type the mob drops
 * Gold Sword Silk Touch For:
   * Cake when cake is full/uneaten
+
+### Gold Armor
+* Gold Helmet Blast Protection:
+  * Reduces explosion damage from creepers by 20%
+* Gold Chestplate Projectile Protection:
+  * Reduces skeleton arrow damage by 20%
+* Gold Leggings Thorns:
+  * Spiders that attack the player receive 1 heart of damage per attack
+* Gold Boots Soul Speed:
+  * Negates the effects of soul sand on player walking speed
+    * Player walking speed on soul sand increased from 40% back to 100%
+
+### Gold Misc.
 * Gold Apple Cure Fire:
   * Golden apples will now cure fire effect on player when eaten
     * Note that this does nothing if in lava or very little if standing in flames

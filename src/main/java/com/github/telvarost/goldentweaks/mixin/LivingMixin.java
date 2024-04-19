@@ -7,17 +7,18 @@ import net.minecraft.entity.Living;
 import net.minecraft.entity.monster.Skeleton;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
-import org.checkerframework.common.aliasing.qual.Unique;
+import net.minecraft.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
 @Mixin(Living.class)
-public class LivingMixin {
+public abstract class LivingMixin extends EntityBase {
+    public LivingMixin(Level arg) {
+        super(arg);
+    }
 
     @Inject(at = @At("HEAD"), method = "onKilledBy", cancellable = true)
     public void onKilledBy(EntityBase arg, CallbackInfo ci) {
