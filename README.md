@@ -1,6 +1,7 @@
 # GoldenTweaks StationAPI Edition for Minecraft Beta 1.7.3
 
 Gives gold tools special properties such as silk touch, fortune, or looting.
+Gives gold armor some special properties as well (limited mostly to certain mob types).
 
 **This version of the mod now supports multiplayer!**
 - Use GlassConfigAPI version 2.0+ to set up the config.
