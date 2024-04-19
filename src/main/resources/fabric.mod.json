@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "GoldenTweaks",
-  "description": "Gives gold tools special properties such as silk touch or looting.",
+  "description": "Gives gold tools special properties such as silk touch or looting. Also, gives small advantages to gold armor.",
   "authors": [
     "Telvarost"
   ],
