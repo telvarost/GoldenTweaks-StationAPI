@@ -27,6 +27,9 @@ public abstract class LivingMixin extends EntityBase {
             if (arg instanceof PlayerBase) {
                 PlayerBase player = (PlayerBase) arg;
 
+                /** Switch this to fish caught or minutes played to encourgae actually playing the game */
+                ModHelper.ModHelperFields.NumberOfKills++;
+
                 if (  (null != player.inventory)
                    && (null != player.inventory.getHeldItem())
                    && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)

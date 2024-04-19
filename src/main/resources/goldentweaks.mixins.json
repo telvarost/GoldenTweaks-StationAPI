@@ -15,6 +15,7 @@
     "GrassMixin",
     "GravelMixin",
     "IceMixin",
+    "ItemBaseMixin",
     "LivingMixin",
     "OreMixin",
     "PlayerBaseMixin",
