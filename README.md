@@ -5,6 +5,7 @@ Gives gold armor some special properties as well (limited mostly to certain mob 
 * Mod works on Multiplayer with [GlassConfigAPI](https://modrinth.com/mod/glass-config-api) version 2.0+ used to sync configs!
 
 ## List of changes
+Note that all changes can be individually disabled using GlassConfigAPI if undesired
 
 ### Gold Tools
 * Gold Axe Silk Touch For:
