@@ -10,6 +10,12 @@ public class Config {
 
     public static class ConfigFields {
 
+        @ConfigName("Enable Fishing Rod Luck Of The Sea")
+        @Comment("10% chance to catch a gold ingot with a fish")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableFishingRodLuckOfTheSea = true;
+
         @ConfigName("Enable Gold Apple Cure Fire")
         @Comment("Cancels fire effect one time when eaten")
         @MultiplayerSynced
@@ -21,6 +27,12 @@ public class Config {
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldAxeSilkTouch = true;
+
+        @ConfigName("Enable Gold Block Herobrine Summoner")
+        @Comment("Converts a gold block into a sponge when lit")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableGoldBlockHerobrineSummoner = true;
 
         @ConfigName("Enable Gold Boots Soul Speed")
         @Comment("Negates the slow-down effect of soul sand")
@@ -69,5 +81,11 @@ public class Config {
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldSwordLooting = true;
+
+        @ConfigName("Enable Sponge Soaking Up Water")
+        @Comment("Will soak up a 5x5 water cube when placed")
+        @MultiplayerSynced
+        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
+        public Boolean enableSpongeSoaksUpWater = true;
     }
 }

@@ -55,6 +55,14 @@ Gives gold armor some special properties as well (limited mostly to certain mob 
   * Golden apples will now cure fire effect on player when eaten
     * Note that this does nothing if in lava or very little if standing in flames
     * It is simply to put out the fire when you have escaped it and water is not available
+* Fishing Rod Luck Of The Sea:
+  * 10% change to catch a gold ingot along with the fish on a successful catch
+* Gold Block Herobrine Summoner:
+  * Summons lightning when lit and converts a single gold block into a sponge block
+    * Sponge block soaks up a 5x5 cube of water when placed
+    * Summoner is built using 9 gold blocks, 4 redstone torches, and 1 netherrack
+      * Base is 3x3 square of gold blocks
+      * On top of base place 4 redstone torches in each cardinal direction with netherrack in the middle
 
 ## Installation using Prism Launcher
 
