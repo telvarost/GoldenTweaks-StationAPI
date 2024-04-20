@@ -2,9 +2,7 @@
 
 Gives gold tools special properties such as silk touch, fortune, or looting.
 Gives gold armor some special properties as well (limited mostly to certain mob types).
-
-**This version of the mod now supports multiplayer!**
-- Use GlassConfigAPI version 2.0+ to set up the config.
+* Mod works on Multiplayer with [GlassConfigAPI](https://modrinth.com/mod/glass-config-api) version 2.0+ used to sync configs!
 
 ## List of changes
 
