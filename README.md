@@ -62,7 +62,7 @@ Gives gold armor some special properties as well (limited mostly to certain mob 
     * Sponge block soaks up a 5x5 cube of water when placed
     * Summoner is built using 9 gold blocks, 4 redstone torches, and 1 netherrack
       * Base is 3x3 square of gold blocks
-      * On top of base place 4 redstone torches in each cardinal direction with netherrack in the middle
+      * On top of the base place 4 redstone torches in each cardinal direction with one netherrack in the middle
 
 ## Installation using Prism Launcher
 
