@@ -56,7 +56,7 @@ Note that all changes can be individually disabled using GlassConfigAPI if undes
     * It is simply to put out the fire when you have escaped it and water is not available
 * Fishing Rod Luck Of The Sea:
   * 10% chance to catch a gold ingot along with the fish on a successful catch
-* Gold Block Herobrine Summoner:
+* Gold Block Herobrine/Sponge Summoner:
   * Summons lightning when lit and converts a single gold block into a sponge block
     * Sponge block soaks up a 5x5 cube of water when placed
     * Summoner is built using 9 gold blocks, 4 redstone torches, and 1 netherrack
