@@ -59,7 +59,7 @@ public class Config {
         public Boolean enableGoldHoeFortune = true;
 
         @ConfigName("Enable Gold Leggings Thorns")
-        @Comment("Only damages attacking spiders")
+        @Comment("Only damages attacking zombies and spiders")
         @MultiplayerSynced
         @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
         public Boolean enableGoldLeggingsThorns = true;

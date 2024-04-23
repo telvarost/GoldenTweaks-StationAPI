@@ -44,7 +44,7 @@ Note that all changes can be individually disabled using GlassConfigAPI if undes
 * Gold Chestplate Projectile Protection:
   * Reduces skeleton arrow damage by 20%
 * Gold Leggings Thorns:
-  * Spiders that attack the player receive 1 heart of damage per attack
+  * Spiders, Zombies, and Zombie-Pigmen that attack the player receive 1 heart of damage per attack
 * Gold Boots Soul Speed:
   * Negates the effects of soul sand on player walking speed
     * Player walking speed on soul sand increased from 40% back to 100%

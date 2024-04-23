@@ -4,6 +4,7 @@ import com.github.telvarost.goldentweaks.Config;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.monster.Creeper;
+import net.minecraft.entity.monster.MonsterBase;
 import net.minecraft.entity.monster.Skeleton;
 import net.minecraft.entity.monster.Spider;
 import net.minecraft.entity.player.PlayerBase;
@@ -33,8 +34,8 @@ public abstract class PlayerBaseMixin extends Living {
             if (Config.config.enableGoldHelmetBlastProtection) {
                 if (entity instanceof Creeper) {
                     if (  (3 < player.inventory.armour.length)
-                            && (null != player.inventory.armour[3])
-                            && (ItemBase.goldHelmet.id == player.inventory.armour[3].itemId)
+                       && (null != player.inventory.armour[3])
+                       && (ItemBase.goldHelmet.id == player.inventory.armour[3].itemId)
                     ) {
                         i = (int) Math.round(i * 0.8);
                     }
@@ -44,8 +45,8 @@ public abstract class PlayerBaseMixin extends Living {
             if (Config.config.enableGoldChestplateProjectileProtection) {
                 if (entity instanceof Skeleton) {
                     if (  (2 < player.inventory.armour.length)
-                            && (null != player.inventory.armour[2])
-                            && (ItemBase.goldChestplate.id == player.inventory.armour[2].itemId)
+                       && (null != player.inventory.armour[2])
+                       && (ItemBase.goldChestplate.id == player.inventory.armour[2].itemId)
                     ) {
                         i = (int) Math.round(i * 0.8);
                     }
@@ -53,7 +54,10 @@ public abstract class PlayerBaseMixin extends Living {
             }
 
             if (Config.config.enableGoldLeggingsThorns) {
-                if (entity instanceof Spider) {
+                if (  (entity instanceof MonsterBase)
+                   && !(entity instanceof Creeper)
+                   && !(entity instanceof Skeleton)
+                ) {
                     if (  (1 < player.inventory.armour.length)
                        && (null != player.inventory.armour[1])
                        && (ItemBase.goldLeggings.id == player.inventory.armour[1].itemId)
