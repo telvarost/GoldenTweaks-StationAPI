@@ -1,14 +1,14 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.block.BlockBase;
-import net.minecraft.block.Bookshelf;
+import net.minecraft.block.Block;
+import net.minecraft.block.BookshelfBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.item.ItemInstance;
-import net.minecraft.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
+import net.minecraft.world.World;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,8 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Bookshelf.class)
-public class BookshelfMixin extends BlockBase {
+@Mixin(BookshelfBlock.class)
+public class BookshelfMixin extends Block {
     public BookshelfMixin(int i, int j) {
         super(i, j, Material.WOOD);
     }
@@ -30,7 +30,7 @@ public class BookshelfMixin extends BlockBase {
     private boolean brokenByGoldToolCount = false;
 
     @Override
-    public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
+    public void afterBreak(World arg, PlayerEntity player, int i, int j, int k, int l) {
 
         if (Config.config.enableGoldAxeSilkTouch) {
             brokenByGoldToolId = false;
@@ -38,41 +38,41 @@ public class BookshelfMixin extends BlockBase {
 
             if (  (null != player)
                 && (null != player.inventory)
-                && (null != player.inventory.getHeldItem())
-                && (ItemBase.goldAxe.id == player.inventory.getHeldItem().itemId)
+                && (null != player.inventory.getSelectedItem())
+                && (Item.GOLDEN_AXE.id == player.inventory.getSelectedItem().itemId)
             ) {
                 brokenByGoldToolId = true;
                 brokenByGoldToolCount = true;
             }
 
-            player.increaseStat(Stats.mineBlock[this.id], 1);
-            this.drop(arg, i, j, k, l);
+            player.increaseStat(Stats.MINE_BLOCK[this.id], 1);
+            this.dropStacks(arg, i, j, k, l);
         }
     }
 
     @Override
-    public void beforeDestroyedByExplosion(Level arg, int i, int j, int k, int l, float f) {
-        if (!arg.isServerSide) {
-            int var7 = this.getDropCount(arg.rand);
+    public void dropStacks(World arg, int i, int j, int k, int l, float f) {
+        if (!arg.isRemote) {
+            int var7 = this.getDroppedItemCount(arg.random);
 
             for(int var8 = 0; var8 < var7; ++var8) {
-                if (!(arg.rand.nextFloat() > f)) {
-                    int var9 = this.getDropId(l, arg.rand);
+                if (!(arg.random.nextFloat() > f)) {
+                    int var9 = this.getDroppedItemId(l, arg.random);
 
                     if (brokenByGoldToolId) {
                         brokenByGoldToolId = false;
-                        var9 = BlockBase.BOOKSHELF.id;
+                        var9 = Block.BOOKSHELF.id;
                     }
 
                     if (var9 > 0) {
-                        this.drop(arg, i, j, k, new ItemInstance(var9, 1, this.droppedMeta(l)));
+                        this.dropStack(arg, i, j, k, new ItemStack(var9, 1, this.getDroppedItemMeta(l)));
                     }
                 }
             }
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "getDroppedItemCount", cancellable = true)
     public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
         if (!Config.config.enableGoldAxeSilkTouch) {
             return;

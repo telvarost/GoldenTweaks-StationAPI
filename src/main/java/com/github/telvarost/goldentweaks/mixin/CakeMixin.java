@@ -1,13 +1,13 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.block.BlockBase;
-import net.minecraft.block.Cake;
+import net.minecraft.block.Block;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.stat.Stats;
+import net.minecraft.world.World;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Cake.class)
-public class CakeMixin extends BlockBase {
+@Mixin(CakeBlock.class)
+public class CakeMixin extends Block {
     public CakeMixin(int i, int j) {
         super(i, j, Material.CAKE);
     }
@@ -29,7 +29,7 @@ public class CakeMixin extends BlockBase {
     private boolean brokenByGoldToolCount = false;
 
     @Override
-    public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
+    public void afterBreak(World arg, PlayerEntity player, int i, int j, int k, int l) {
 
         if (Config.config.enableGoldSwordLooting) {
             brokenByGoldToolId = false;
@@ -37,8 +37,8 @@ public class CakeMixin extends BlockBase {
 
             if (  (null != player)
                 && (null != player.inventory)
-                && (null != player.inventory.getHeldItem())
-                && (ItemBase.goldSword.id == player.inventory.getHeldItem().itemId)
+                && (null != player.inventory.getSelectedItem())
+                && (Item.GOLDEN_SWORD.id == player.inventory.getSelectedItem().itemId)
                 && (0 == l)
             ) {
                 brokenByGoldToolId = true;
@@ -46,23 +46,23 @@ public class CakeMixin extends BlockBase {
             }
         }
 
-        player.increaseStat(Stats.mineBlock[this.id], 1);
-        this.drop(arg, i, j, k, l);
+        player.increaseStat(Stats.MINE_BLOCK[this.id], 1);
+        this.dropStacks(arg, i, j, k, l);
     }
 
-    @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "getDroppedItemId", cancellable = true)
     public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
         if (!Config.config.enableGoldSwordLooting) {
             return;
         }
 
         if (brokenByGoldToolId) {
-            cir.setReturnValue(ItemBase.cake.id);
+            cir.setReturnValue(Item.CAKE.id);
             brokenByGoldToolId = false;
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "getDropCount", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "getDroppedItemCount", cancellable = true)
     public void getDropCount(Random random, CallbackInfoReturnable<Integer> cir) {
         if (!Config.config.enableGoldSwordLooting) {
             return;

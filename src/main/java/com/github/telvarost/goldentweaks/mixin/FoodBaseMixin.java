@@ -1,27 +1,27 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.item.ItemInstance;
-import net.minecraft.item.food.FoodBase;
-import net.minecraft.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FoodItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(FoodBase.class)
-public class FoodBaseMixin extends ItemBase {
+@Mixin(FoodItem.class)
+public class FoodBaseMixin extends Item {
     public FoodBaseMixin(int i, int j, boolean bl) {
         super(i);
     }
 
     @Inject(at = @At("HEAD"), method = "use", cancellable = true)
-    public void goldenTweaks_use(ItemInstance arg, Level arg2, PlayerBase arg3, CallbackInfoReturnable<ItemInstance> cir) {
+    public void goldenTweaks_use(ItemStack arg, World arg2, PlayerEntity arg3, CallbackInfoReturnable<ItemStack> cir) {
         if (Config.config.enableGoldAppleCureFire) {
-            if (arg.itemId == ItemBase.goldenApple.id) {
-                arg3.fire = 0;
+            if (arg.itemId == Item.GOLDEN_APPLE.id) {
+                arg3.fireTicks = 0;
             }
         }
     }

@@ -1,22 +1,21 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.entity.EntityBase;
-import net.minecraft.entity.Living;
-import net.minecraft.entity.monster.Creeper;
-import net.minecraft.entity.monster.MonsterBase;
-import net.minecraft.entity.monster.Skeleton;
-import net.minecraft.entity.monster.Spider;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.mob.MonsterEntity;
+import net.minecraft.entity.mob.SkeletonEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(PlayerBase.class)
-public abstract class PlayerBaseMixin extends Living {
-    public PlayerBaseMixin(Level arg) {
+@Mixin(PlayerEntity.class)
+public abstract class PlayerBaseMixin extends LivingEntity {
+    public PlayerBaseMixin(World arg) {
         super(arg);
     }
 
@@ -24,18 +23,18 @@ public abstract class PlayerBaseMixin extends Living {
             method = "damage",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/Living;damage(Lnet/minecraft/entity/EntityBase;I)Z"
+                    target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/Entity;I)Z"
             )
     )
-    public boolean goldenTweaks_damage(Living living, EntityBase entity, int i) {
-        if (living instanceof PlayerBase) {
-            PlayerBase player = (PlayerBase) living;
+    public boolean goldenTweaks_damage(LivingEntity living, Entity entity, int i) {
+        if (living instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) living;
 
             if (Config.config.enableGoldHelmetBlastProtection) {
-                if (entity instanceof Creeper) {
-                    if (  (3 < player.inventory.armour.length)
-                       && (null != player.inventory.armour[3])
-                       && (ItemBase.goldHelmet.id == player.inventory.armour[3].itemId)
+                if (entity instanceof CreeperEntity) {
+                    if (  (3 < player.inventory.armor.length)
+                       && (null != player.inventory.armor[3])
+                       && (Item.GOLDEN_HELMET.id == player.inventory.armor[3].itemId)
                     ) {
                         i = (int) Math.round(i * 0.8);
                     }
@@ -43,10 +42,10 @@ public abstract class PlayerBaseMixin extends Living {
             }
 
             if (Config.config.enableGoldChestplateProjectileProtection) {
-                if (entity instanceof Skeleton) {
-                    if (  (2 < player.inventory.armour.length)
-                       && (null != player.inventory.armour[2])
-                       && (ItemBase.goldChestplate.id == player.inventory.armour[2].itemId)
+                if (entity instanceof SkeletonEntity) {
+                    if (  (2 < player.inventory.armor.length)
+                       && (null != player.inventory.armor[2])
+                       && (Item.GOLDEN_CHESTPLATE.id == player.inventory.armor[2].itemId)
                     ) {
                         i = (int) Math.round(i * 0.8);
                     }
@@ -54,13 +53,13 @@ public abstract class PlayerBaseMixin extends Living {
             }
 
             if (Config.config.enableGoldLeggingsThorns) {
-                if (  (entity instanceof MonsterBase)
-                   && !(entity instanceof Creeper)
-                   && !(entity instanceof Skeleton)
+                if (  (entity instanceof MonsterEntity)
+                   && !(entity instanceof CreeperEntity)
+                   && !(entity instanceof SkeletonEntity)
                 ) {
-                    if (  (1 < player.inventory.armour.length)
-                       && (null != player.inventory.armour[1])
-                       && (ItemBase.goldLeggings.id == player.inventory.armour[1].itemId)
+                    if (  (1 < player.inventory.armor.length)
+                       && (null != player.inventory.armor[1])
+                       && (Item.GOLDEN_LEGGINGS.id == player.inventory.armor[1].itemId)
                     ) {
                         entity.damage(player, 2);
                     }

@@ -1,7 +1,7 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.item.tool.ToolMaterial;
+import net.minecraft.item.ToolMaterial;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,13 +14,13 @@ public class ToolMaterialMixin {
 
     @Shadow @Final private float miningSpeed;
 
-    @Shadow @Final private int durability;
+    @Shadow @Final private int itemDurability;
 
     @Inject(at = @At("HEAD"), method = "getMiningLevel", cancellable = true)
     public void goldenTweaks_getMiningLevel(CallbackInfoReturnable<Integer> cir) {
         if (  (Config.config.enableGoldPickaxeSilkTouch)
            && (12.0F == this.miningSpeed)
-           && (32 == this.durability)
+           && (32 == this.itemDurability)
         ) {
             cir.setReturnValue(2);
         }

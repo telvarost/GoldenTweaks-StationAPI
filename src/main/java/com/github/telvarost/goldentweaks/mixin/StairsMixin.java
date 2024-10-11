@@ -1,12 +1,12 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.block.BlockBase;
-import net.minecraft.block.Stairs;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.level.Level;
+import net.minecraft.block.Block;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.stat.Stats;
+import net.minecraft.world.World;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,27 +16,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Stairs.class)
-public class StairsMixin extends BlockBase {
-    public StairsMixin(int i, BlockBase arg) {
-        super(i, arg.texture, arg.material);
+@Mixin(StairsBlock.class)
+public class StairsMixin extends Block {
+    public StairsMixin(int i, Block arg) {
+        super(i, arg.textureId, arg.material);
     }
 
     @Unique
     private boolean brokenByGoldTool = false;
 
     @Override
-    public void afterBreak(Level arg, PlayerBase player, int i, int j, int k, int l) {
+    public void afterBreak(World arg, PlayerEntity player, int i, int j, int k, int l) {
 
         brokenByGoldTool = false;
 
         if (Config.config.enableGoldPickaxeSilkTouch) {
 
-            if (  (this.id == BlockBase.COBBLESTONE_STAIRS.id)
+            if (  (this.id == Block.COBBLESTONE_STAIRS.id)
                 && (null != player)
                 && (null != player.inventory)
-                && (null != player.inventory.getHeldItem())
-                && (ItemBase.goldPickaxe.id == player.inventory.getHeldItem().itemId)
+                && (null != player.inventory.getSelectedItem())
+                && (Item.GOLDEN_PICKAXE.id == player.inventory.getSelectedItem().itemId)
             ) {
                 brokenByGoldTool = true;
             }
@@ -44,21 +44,21 @@ public class StairsMixin extends BlockBase {
 
         if (Config.config.enableGoldAxeSilkTouch) {
 
-            if (  (this.id == BlockBase.WOOD_STAIRS.id)
+            if (  (this.id == Block.WOODEN_STAIRS.id)
                 && (null != player)
                 && (null != player.inventory)
-                && (null != player.inventory.getHeldItem())
-                && (ItemBase.goldAxe.id == player.inventory.getHeldItem().itemId)
+                && (null != player.inventory.getSelectedItem())
+                && (Item.GOLDEN_AXE.id == player.inventory.getSelectedItem().itemId)
             ) {
                 brokenByGoldTool = true;
             }
         }
 
-        player.increaseStat(Stats.mineBlock[this.id], 1);
-        this.drop(arg, i, j, k, l);
+        player.increaseStat(Stats.MINE_BLOCK[this.id], 1);
+        this.dropStacks(arg, i, j, k, l);
     }
 
-    @Inject(at = @At("HEAD"), method = "getDropId", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "getDroppedItemId", cancellable = true)
     public void goldenTweaks_getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
         if (  (Config.config.enableGoldPickaxeSilkTouch)
            || (Config.config.enableGoldAxeSilkTouch)
@@ -72,15 +72,15 @@ public class StairsMixin extends BlockBase {
     }
 
     @Inject(
-            method = "beforeDestroyedByExplosion",
+            method = "dropStacks",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void annoyanceFix_beforeDestroyedByExplosion(Level arg, int i, int j, int k, int l, float f, CallbackInfo ci) {
+    private void annoyanceFix_beforeDestroyedByExplosion(World arg, int i, int j, int k, int l, float f, CallbackInfo ci) {
         if (  (Config.config.enableGoldPickaxeSilkTouch)
            || (Config.config.enableGoldAxeSilkTouch)
         ) {
-            super.beforeDestroyedByExplosion(arg, i, j, k, l, f);
+            super.dropStacks(arg, i, j, k, l, f);
             ci.cancel();
         }
     }

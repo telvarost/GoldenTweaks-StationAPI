@@ -1,68 +1,68 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import net.minecraft.block.BlockBase;
-import net.minecraft.entity.Lightning;
-import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.block.Block;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FlintAndSteel;
-import net.minecraft.item.ItemBase;
-import net.minecraft.item.ItemInstance;
-import net.minecraft.level.Level;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FlintAndSteel.class)
-public class FlintAndSteelMixin extends ItemBase {
+public class FlintAndSteelMixin extends Item {
     public FlintAndSteelMixin(int i) {
         super(i);
     }
 
-    @Inject(at = @At("HEAD"), method = "useOnTile", cancellable = true)
-    public void useOnTile(ItemInstance item, PlayerBase player, Level level, int i, int j, int k, int meta, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(at = @At("HEAD"), method = "useOnBlock", cancellable = true)
+    public void useOnTile(ItemStack item, PlayerEntity player, World level, int i, int j, int k, int meta, CallbackInfoReturnable<Boolean> cir) {
         if (Config.config.enableGoldBlockHerobrineSummoner) {
-            int blockId = level.getTileId(i, j, k);
-            if (blockId == BlockBase.NETHERRACK.id) {
-                int blockBelowId = level.getTileId(i, j - 1, k);
+            int blockId = level.getBlockId(i, j, k);
+            if (blockId == Block.NETHERRACK.id) {
+                int blockBelowId = level.getBlockId(i, j - 1, k);
 
                 /** Ensure summoner is lit from the top of the netherrack block with a gold block below */
                 if (  (meta == 1)
-                   && (blockBelowId == BlockBase.GOLD_BLOCK.id)
+                   && (blockBelowId == Block.GOLD_BLOCK.id)
                 ) {
-                    int blockId_N = level.getTileId(i, j, k + 1);
-                    int blockId_E = level.getTileId(i + 1, j, k);
-                    int blockId_S = level.getTileId(i, j, k - 1);
-                    int blockId_W = level.getTileId(i - 1, j, k);
+                    int blockId_N = level.getBlockId(i, j, k + 1);
+                    int blockId_E = level.getBlockId(i + 1, j, k);
+                    int blockId_S = level.getBlockId(i, j, k - 1);
+                    int blockId_W = level.getBlockId(i - 1, j, k);
 
-                    if (   (blockId_N == BlockBase.REDSTONE_TORCH_LIT.id)
-                        && (blockId_E == BlockBase.REDSTONE_TORCH_LIT.id)
-                        && (blockId_S == BlockBase.REDSTONE_TORCH_LIT.id)
-                        && (blockId_W == BlockBase.REDSTONE_TORCH_LIT.id)
+                    if (   (blockId_N == Block.LIT_REDSTONE_TORCH.id)
+                        && (blockId_E == Block.LIT_REDSTONE_TORCH.id)
+                        && (blockId_S == Block.LIT_REDSTONE_TORCH.id)
+                        && (blockId_W == Block.LIT_REDSTONE_TORCH.id)
                     ) {
-                        int blockIdBelow_0_0 = level.getTileId(i - 1, j - 1, k - 1);
-                        int blockIdBelow_0_1 = level.getTileId(i - 1, j - 1, k);
-                        int blockIdBelow_0_2 = level.getTileId(i - 1, j - 1, k + 1);
-                        int blockIdBelow_1_0 = level.getTileId(i, j - 1, k - 1);
-                        int blockIdBelow_1_1 = level.getTileId(i, j - 1, k);
-                        int blockIdBelow_1_2 = level.getTileId(i, j - 1, k + 1);
-                        int blockIdBelow_2_0 = level.getTileId(i + 1, j - 1, k - 1);
-                        int blockIdBelow_2_1 = level.getTileId(i + 1, j - 1, k);
-                        int blockIdBelow_2_2 = level.getTileId(i + 1, j - 1, k + 1);
+                        int blockIdBelow_0_0 = level.getBlockId(i - 1, j - 1, k - 1);
+                        int blockIdBelow_0_1 = level.getBlockId(i - 1, j - 1, k);
+                        int blockIdBelow_0_2 = level.getBlockId(i - 1, j - 1, k + 1);
+                        int blockIdBelow_1_0 = level.getBlockId(i, j - 1, k - 1);
+                        int blockIdBelow_1_1 = level.getBlockId(i, j - 1, k);
+                        int blockIdBelow_1_2 = level.getBlockId(i, j - 1, k + 1);
+                        int blockIdBelow_2_0 = level.getBlockId(i + 1, j - 1, k - 1);
+                        int blockIdBelow_2_1 = level.getBlockId(i + 1, j - 1, k);
+                        int blockIdBelow_2_2 = level.getBlockId(i + 1, j - 1, k + 1);
 
-                        if (   (blockIdBelow_0_0 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_0_1 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_0_2 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_1_0 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_1_1 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_1_2 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_2_0 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_2_1 == BlockBase.GOLD_BLOCK.id)
-                            && (blockIdBelow_2_2 == BlockBase.GOLD_BLOCK.id)
+                        if (   (blockIdBelow_0_0 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_0_1 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_0_2 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_1_0 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_1_1 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_1_2 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_2_0 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_2_1 == Block.GOLD_BLOCK.id)
+                            && (blockIdBelow_2_2 == Block.GOLD_BLOCK.id)
                         ) {
-                            Lightning lightning = new Lightning(level, i, j, k);
+                            LightningEntity lightning = new LightningEntity(level, i, j, k);
                             level.spawnEntity(lightning);
-                            level.setTile(i, j - 1, k, BlockBase.SPONGE.id);
+                            level.setBlock(i, j - 1, k, Block.SPONGE.id);
                         }
                     }
                 }
