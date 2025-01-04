@@ -3,6 +3,7 @@
 Gives gold tools special properties such as silk touch, fortune, or looting.
 Gives gold armor some special properties as well (limited mostly to certain mob types).
 * Mod works on Multiplayer with [GlassConfigAPI](https://modrinth.com/mod/glass-config-api) version 3.0+ used to sync configs!
+* [StationAPI](https://modrinth.com/mod/stationapi) is used only to fix the grass block item renderer and is optional
 
 ## List of changes
 Note that all changes can be individually disabled using GlassConfigAPI if undesired
