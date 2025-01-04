@@ -1,7 +1,6 @@
 package com.github.telvarost.goldentweaks.mixin;
 
 import com.github.telvarost.goldentweaks.Config;
-import com.github.telvarost.goldentweaks.ModHelper;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.entity.ItemEntity;
@@ -10,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
-import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
