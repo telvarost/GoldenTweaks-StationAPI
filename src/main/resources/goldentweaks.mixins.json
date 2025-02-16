@@ -27,7 +27,7 @@
     "SnowMixin",
     "SoulSandMixin",
     "SpongeMixin",
-    "StairsMixin",
+    "StairsBlockMixin",
     "StoneMixin",
     "ToolMaterialMixin"
   ],
